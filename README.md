@@ -1,66 +1,79 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistema de Monitoramento de Criptomoedas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este sistema foi desenvolvido utilizando Laravel com Blade no back-end e JavaScript no front-end para exibir informações de criptomoedas em uma interface gráfica moderna, responsiva e clean.
 
-## About Laravel
+## Funcionalidades Implementadas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Gráfico de histórico de preço da criptomoeda selecionada**
+   - Interface com dropdown para seleção de criptomoedas
+   - Gráfico interativo com toggle para alternar entre gráfico de linha e gráfico de velas (candlestick)
+   - Seleção de intervalos de tempo: 1 dia, 1 semana, 1 mês e 1 ano
+   - Gráficos renderizados com Chart.js
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+2. **Painéis de variação em tempo real**
+   - Atualização automática a cada 10 segundos
+   - Exibição das 5 criptomoedas com maior valorização nas últimas 24h (em verde)
+   - Exibição das 5 criptomoedas com maior desvalorização nas últimas 24h (em vermelho)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+3. **Design e arquitetura**
+   - Interface moderna e responsiva utilizando TailwindCSS
+   - Código organizado em camadas:
+     - Requisições à API (via serviços Laravel)
+     - Interface gráfica (Blade + JavaScript)
+     - Componente de gráficos
+   - Atualização em tempo real
 
-## Learning Laravel
+## Tecnologias Utilizadas
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Backend**: Laravel 10.x
+- **Frontend**: Blade, JavaScript, TailwindCSS
+- **Gráficos**: Chart.js
+- **API**: CoinGecko
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Estrutura do Projeto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `app/Services/CoinGeckoService.php`: Serviço para consumir a API do CoinGecko
+- `app/Http/Controllers/CryptoController.php`: Controlador para gerenciar as requisições
+- `resources/views/layouts/app.blade.php`: Layout base da aplicação
+- `resources/views/crypto/index.blade.php`: Página principal com gráficos e painéis
+- `routes/web.php`: Rotas da aplicação
 
-## Laravel Sponsors
+## Instruções de Instalação
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. Extraia o arquivo zip em seu servidor
+2. Configure o ambiente:
+   ```bash
+   cd crypto-monitor
+   composer install
+   npm install
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-### Premium Partners
+3. Configure o arquivo `.env` com suas informações de ambiente
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. Compile os assets:
+   ```bash
+   npm run build
+   ```
 
-## Contributing
+5. Inicie o servidor:
+   ```bash
+   php artisan serve
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. Acesse a aplicação em `http://localhost:8000`
 
-## Code of Conduct
+## Considerações Adicionais
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- O sistema utiliza cache para otimizar as requisições à API do CoinGecko
+- A interface é totalmente responsiva, adaptando-se a diferentes tamanhos de tela
+- Os gráficos são interativos e permitem visualizar informações detalhadas ao passar o mouse sobre os pontos
+- A atualização automática dos painéis de variação garante informações sempre atualizadas
 
-## Security Vulnerabilities
+## Possíveis Melhorias Futuras
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Adicionar autenticação de usuários
+- Implementar favoritos para acompanhamento de criptomoedas específicas
+- Adicionar notificações para variações significativas de preço
+- Expandir para mais tipos de gráficos e indicadores técnicos
