@@ -8,9 +8,8 @@
     <div class="w-4/5 mx-auto bg-white rounded-lg shadow-md p-4">
         <div class="mb-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-bold text-gray-800 mb-2 md:mb-0">Gráfico de Preços</h2>
-            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
-                <!-- Seleção de criptomoeda -->
-                <select id="coin-selector" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            <div class="flex flex-col w-2/5 md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+                <select id="coin-selector" class="rounded-md border-gray-300 mb-5 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     @foreach($topCoins as $coin)
                         <option value="{{ $coin['id'] }}" {{ $coin['id'] === 'bitcoin' ? 'selected' : '' }}>
                             {{ $coin['name'] }} ({{ strtoupper($coin['symbol']) }})
@@ -19,7 +18,7 @@
                 </select>
                 
                 <!-- Seleção de intervalo de tempo -->
-                <select id="time-interval" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <select id="time-interval" class="rounded-md border-gray-300 mb-5 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="1d">1 dia</option>
                     <option value="7d">1 semana</option>
                     <option value="30d">1 mês</option>
@@ -27,14 +26,14 @@
                 </select>
                 
                 <!-- Toggle para tipo de gráfico -->
-                <div class="flex items-center space-x-2">
+                <!-- <div class="flex items-center space-x-2">
                     <span class="text-sm text-gray-600">Linha</span>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="chart-type-toggle" class="sr-only peer">
                         <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                         <span class="text-sm text-gray-600">Velas</span>
                     </label>
-                </div>
+                </div> -->
             </div>
         <div class="h-80 w-3/4">
             <canvas id="price-chart"></canvas>
@@ -42,13 +41,12 @@
     </div>
     
     <!-- Painel lateral com variações -->
-    <div class="bg-white rounded-lg shadow-md p-4">
+    <div class="bg-white border border-gray-200 rounded-lg shadow-md p-4">
         <div class="mb-4">
             <h2 class="text-xl font-bold text-gray-800">Variação em 24h</h2>
             <p class="text-sm text-gray-500">Atualização automática a cada 10 segundos</p>
         </div>
         
-        <!-- Top Gainers -->
         <div class="mb-6">
             <h3 class="text-lg font-semibold text-green-600 mb-2">Maiores Valorizações</h3>
             <div id="top-gainers" class="space-y-2">
@@ -67,7 +65,6 @@
             </div>
         </div>
         
-        <!-- Top Losers -->
         <div>
             <h3 class="text-lg font-semibold text-red-600 mb-2">Maiores Desvalorizações</h3>
             <div id="top-losers" class="space-y-2">

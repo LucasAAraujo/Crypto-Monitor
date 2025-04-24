@@ -20,14 +20,11 @@
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen">
-    <header class="bg-indigo-600 text-white shadow-md">
+    <header class="bg-indigo-800 text-white shadow-md">
         <div class="container mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <h1 class="text-2xl font-bold">Crypto Monitor</h1>
+            <div class="flex justify-center items-center">
                 <nav>
-                    <ul class="flex space-x-4">
-                        <li><a href="{{ route('home') }}" class="hover:text-indigo-200 transition">Dashboard</a></li>
-                    </ul>
+                    <h1 class="text-2xl font-bold"><a href="{{ route('home') }}" class="hover:text-indigo-200 transition">Crypto Monitor</a></h1>
                 </nav>
             </div>
         </div>
