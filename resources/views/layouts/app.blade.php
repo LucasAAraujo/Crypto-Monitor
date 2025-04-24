@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Monitor - @yield('title', 'Dashboard')</title>
-    
+    <link rel="icon" sizes="32x32" href="{{asset('img/letra-l.png')}}">
+
     <!-- Scripts e Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
